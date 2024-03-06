@@ -7,13 +7,11 @@ import { Game } from './Components/Game';
 import './MainMenu.scss';
 
 export const MainMenu = () => {
-  const { user, updateUser } = useContext(UserContext);
+  const { user, createUser } = useContext(UserContext);
   const [menuOpen, setMenuOpen] = useState(true);
 
   const handleStart = () => {
-    if (!user) {
-      updateUser(100);
-    }
+    //При старте игры
     setMenuOpen(false);
   };
 
