@@ -1,23 +1,34 @@
-import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
 import { useState, useContext } from 'react';
 import { Settings } from './Components/Settings';
 import { Game } from './Components/Game';
 import './MainMenu.scss';
 
 export const MainMenu = () => {
-  const [menuOpen, setMenuOpen] = useState(true);
+  const navigate = useNavigate();
 
   const showAuthorAlert = () => {
     alert('Автор - Редников Лев CheateRYT');
   };
 
-  const handleStart = () => {
-    setMenuOpen(false);
+  const handleGameButton = () => {
+    navigate('/game');
   };
-
-  const closeMenu = () => {
-    setMenuOpen(false);
+  const handleSettingsButton = () => {
+    navigate('/settings');
   };
-
-  return <div className="main-menu"></div>;
+  return (
+    <div className="main-menu container">
+      <h1 className="main-menu__title">YourLife</h1>
+      <button onClick={handleGameButton} className="main-menu__button">
+        Играть
+      </button>
+      <button onClick={handleSettingsButton} className="main-menu__button">
+        Настройки
+      </button>
+      <button onClick={showAuthorAlert} className="main-menu__button">
+        Автор
+      </button>
+    </div>
+  );
 };
