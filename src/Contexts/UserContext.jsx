@@ -17,13 +17,23 @@ const UserProvider = ({ children }) => {
           userFromLocalStorage.health,
           userFromLocalStorage.fame,
           userFromLocalStorage.beauty,
+          userFromLocalStorage.gender,
           userFromLocalStorage.money,
         ),
       );
     }
   }, []);
 
-  const createUser = (name, surname, tire, health, fame, beauty, money) => {
+  const createUser = (
+    name,
+    surname,
+    tire,
+    health,
+    fame,
+    beauty,
+    gender,
+    money,
+  ) => {
     const userFromLocalStorage = JSON.parse(localStorage.getItem('user'));
     if (!userFromLocalStorage) {
       const newUser = new User(
@@ -33,6 +43,7 @@ const UserProvider = ({ children }) => {
         health,
         fame,
         beauty,
+        gender,
         money,
       );
       setUser(newUser);
@@ -48,6 +59,11 @@ const UserProvider = ({ children }) => {
 
   const updateUserName = (newName) => {
     user.updateName(newName);
+    setUser({ ...user });
+    user.updateLocalStorage();
+  };
+  const updateUserGender = (newGender) => {
+    user.updateGender(newGender);
     setUser({ ...user });
     user.updateLocalStorage();
   };
@@ -87,6 +103,7 @@ const UserProvider = ({ children }) => {
         updateUserBeauty,
         updateUserSurname,
         updateUserTire,
+        updateUserGender,
         updateUserHealth,
       }}
     >

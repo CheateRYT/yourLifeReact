@@ -1,5 +1,5 @@
 export class User {
-  constructor(name, surname, tire, health, fame, beauty, money) {
+  constructor(name, surname, tire, health, fame, beauty, gender, money) {
     this.name = name;
     this.surname = surname;
     this.money = money;
@@ -7,10 +7,15 @@ export class User {
     this.health = health;
     this.fame = fame;
     this.beauty = beauty;
+    this.gender = gender;
   }
 
   updateName(newName) {
     this.name = newName;
+    this.updateLocalStorage();
+  }
+  updateGender(newGender) {
+    this.name = newGender;
     this.updateLocalStorage();
   }
   updateTire(newTire) {
@@ -42,6 +47,7 @@ export class User {
       health: this.health,
       fame: this.fame,
       beauty: this.beauty,
+      gender: this.gender,
       money: this.money,
     };
     localStorage.setItem('user', JSON.stringify(updatedUser));
