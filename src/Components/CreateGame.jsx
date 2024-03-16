@@ -27,7 +27,15 @@ export const CreateGame = ({ showPopup }) => {
     if (formData.gender === 'medium') {
       alert('Вам запрещено играть, выберите другой пол!!!');
       showPopup(false);
-    } else if (formData && formData.gender && formData.gender !== 'none') {
+    } else if (
+      formData &&
+      formData.name &&
+      formData.surname &&
+      formData &&
+      formData &&
+      formData.gender &&
+      formData.gender !== 'none'
+    ) {
       createUser(
         formData.name,
         formData.surname,
