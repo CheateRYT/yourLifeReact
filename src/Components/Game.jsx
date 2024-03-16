@@ -1,20 +1,41 @@
 import './css/Game.scss';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { UserContext } from '../Contexts/UserContext';
 import { Routes, Route, Outlet } from 'react-router-dom';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 export const Game = () => {
-  const { user, createUser, updateUserName, updateMoney } =
-    useContext(UserContext);
-
   return (
     <div className="game">
-      <ProgressBar now={60} />
+      <div className="container game-navbar ">
+        <h1 className="game-navbar__title">YourLife</h1>
+        <ul className="charact-list">
+          <div className="characts-column">
+            <li className="charact">
+              <span className="charact__title">Здоровье</span>
+              <ProgressBar key={0} />
+            </li>
+            <li className="charact">
+              <span className="charact__title">Усталость</span>
+              <ProgressBar key={1} />
+            </li>
+          </div>
+          <div className="characts-column">
+            <li className="charact">
+              <span className="charact__title">Популярность</span>
+              <ProgressBar key={2} />
+            </li>
+            <li className="charact">
+              <span className="charact__title">Красота</span>
+              <ProgressBar key={3} />
+            </li>
+          </div>
+        </ul>
+      </div>
     </div>
   );
 };
-{
-  /* <div className="container game-navbar d-flex">
+//{
+/* <div className="container game-navbar d-flex">
         <h1 className="game-navbar__title">YourLife</h1>
         <ul className="characteristics d-flex">
           <div className="characteristics-group">
@@ -39,4 +60,4 @@ export const Game = () => {
           </div>
         </ul>
       </div> */
-}
+//}

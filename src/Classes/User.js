@@ -1,12 +1,12 @@
 export class User {
-  constructor(name, surname, tire, health, fame, hapiness, money) {
+  constructor(name, surname, tire, health, fame, beauty, money) {
     this.name = name;
     this.surname = surname;
     this.money = money;
     this.tire = tire;
     this.health = health;
     this.fame = fame;
-    this.hapiness = hapiness;
+    this.beauty = beauty;
   }
 
   updateName(newName) {
@@ -25,8 +25,8 @@ export class User {
     this.fame = newFame;
     this.updateLocalStorage();
   }
-  updateHapiness(newHapiness) {
-    this.hapiness = newHapiness;
+  updateBeauty(newBeauty) {
+    this.beauty = newBeauty;
     this.updateLocalStorage();
   }
   updateMoney(newMoney) {
@@ -41,7 +41,7 @@ export class User {
       tire: this.tire,
       health: this.health,
       fame: this.fame,
-      hapiness: this.hapiness,
+      beauty: this.beauty,
       money: this.money,
     };
     localStorage.setItem('user', JSON.stringify(updatedUser));

@@ -4,8 +4,24 @@
     font-weight: 700;
     letter-spacing: 10px;
   }
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 10px;
 }
-
+.characts-column {
+  flex-direction: column;
+  display: flex;
+}
 .progress-bar {
   background-color: black !important;
+}
+.charact-list {
+  margin-top: 20px;
+  display: flex;
+  gap: 20px;
+}
+.game-navbar {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
 }

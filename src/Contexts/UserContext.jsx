@@ -16,14 +16,14 @@ const UserProvider = ({ children }) => {
           userFromLocalStorage.tire,
           userFromLocalStorage.health,
           userFromLocalStorage.fame,
-          userFromLocalStorage.hapiness,
+          userFromLocalStorage.beauty,
           userFromLocalStorage.money,
         ),
       );
     }
   }, []);
 
-  const createUser = (name, surname, tire, health, fame, hapiness, money) => {
+  const createUser = (name, surname, tire, health, fame, beauty, money) => {
     const userFromLocalStorage = JSON.parse(localStorage.getItem('user'));
     if (!userFromLocalStorage) {
       const newUser = new User(
@@ -32,7 +32,7 @@ const UserProvider = ({ children }) => {
         tire,
         health,
         fame,
-        hapiness,
+        beauty,
         money,
       );
       setUser(newUser);
@@ -67,12 +67,12 @@ const UserProvider = ({ children }) => {
     user.updateLocalStorage();
   };
   const updateUserFame = (newFame) => {
-    user.updateHealth(newFame);
+    user.updateFame(newFame);
     setUser({ ...user });
     user.updateLocalStorage();
   };
-  const updateUserHapiness = (newHapiness) => {
-    user.updateHealth(newHapiness);
+  const updateUserBeauty = (newBeauty) => {
+    user.updateBeauty(newBeauty);
     setUser({ ...user });
     user.updateLocalStorage();
   };
@@ -84,7 +84,7 @@ const UserProvider = ({ children }) => {
         updateMoney,
         updateUserName,
         updateUserFame,
-        updateUserHapiness,
+        updateUserBeauty,
         updateUserSurname,
         updateUserTire,
         updateUserHealth,
