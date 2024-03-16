@@ -1,0 +1,11 @@
+.game-navbar__title {
+  @media (max-width: 765px) {
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: 10px;
+  }
+}
+
+.progress-bar {
+  background-color: black !important;
+}
