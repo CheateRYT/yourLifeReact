@@ -3,10 +3,11 @@ import { useContext, useEffect } from 'react';
 import { UserContext } from '../Contexts/UserContext';
 import { Routes, Route, Outlet } from 'react-router-dom';
 import ProgressBar from 'react-bootstrap/ProgressBar';
+import emptyProfile from '../img/emptyProfile.png';
 export const Game = () => {
   return (
     <div className="game">
-      <div className="container game-navbar ">
+      <div className="container game-navbar">
         <h1 className="game-navbar__title">YourLife</h1>
         <ul className="charact-list">
           <div className="characts-column">
@@ -30,6 +31,10 @@ export const Game = () => {
             </li>
           </div>
         </ul>
+        <div className="mini-profile">
+          <img className="mini-profile__img" src={emptyProfile} alt="" />
+          <span className="mini-profile__name">Персонаж не создан</span>
+        </div>
       </div>
     </div>
   );
