@@ -1,8 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './css/Game.scss';
 import { UserContext } from '../Contexts/UserContext';
-import { Routes, Route, Outlet } from 'react-router-dom';
-import ProgressBar from 'react-bootstrap/ProgressBar';
+import { ProgressBar } from 'react-bootstrap';
 import emptyProfile from '../img/emptyProfile.png';
 import femaleProfile from '../img/femaleProfile.png';
 import maleProfile from '../img/maleProfile.png';
@@ -27,21 +26,21 @@ export const Game = () => {
           <div className="characts-column">
             <li className="charact">
               <span className="charact__title">Здоровье</span>
-              <ProgressBar key={0} />
+              <ProgressBar now={user.health ? user.health : 0} />
             </li>
             <li className="charact">
               <span className="charact__title">Усталость</span>
-              <ProgressBar key={1} />
+              <ProgressBar now={user.tire ? user.tire : 0} />
             </li>
           </div>
           <div className="characts-column">
             <li className="charact">
               <span className="charact__title">Популярность</span>
-              <ProgressBar key={2} />
+              <ProgressBar now={user.fame ? user.fame : 0} />
             </li>
             <li className="charact">
               <span className="charact__title">Красота</span>
-              <ProgressBar key={3} />
+              <ProgressBar now={user.beauty ? user.beauty : 0} />
             </li>
           </div>
         </ul>
