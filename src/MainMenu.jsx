@@ -3,16 +3,23 @@ import { useState, useContext } from 'react';
 import { Settings } from './Components/Settings';
 import { Game } from './Components/Game';
 import './MainMenu.scss';
-
+import { CreateGame } from './Components/CreateGame';
+import { UserContext } from './Contexts/UserContext';
 export const MainMenu = () => {
+  const [showCreateGame, setShowCreateGame] = useState(false);
   const navigate = useNavigate();
+  const { user } = useContext(UserContext);
 
   const showAuthorAlert = () => {
     alert('Автор - Редников Лев CheateRYT');
   };
 
   const handleGameButton = () => {
-    navigate('/game');
+    if (!user) {
+      setShowCreateGame(true);
+    } else {
+      navigate('/game');
+    }
   };
   const handleSettingsButton = () => {
     navigate('/settings');
@@ -29,6 +36,7 @@ export const MainMenu = () => {
       <button onClick={showAuthorAlert} className="main-menu__button">
         Автор
       </button>
+      {showCreateGame && <CreateGame showPopup={setShowCreateGame} />}
     </div>
   );
 };

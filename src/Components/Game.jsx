@@ -7,7 +7,7 @@ import femaleProfile from '../img/femaleProfile.png';
 import maleProfile from '../img/maleProfile.png';
 
 export const Game = () => {
-  const { user } = useContext(UserContext);
+  const { user, createUser } = useContext(UserContext);
   const [profileImage, setProfileImage] = useState(emptyProfile);
 
   useEffect(() => {
@@ -16,7 +16,7 @@ export const Game = () => {
     } else {
       setProfileImage(emptyProfile);
     }
-  }, [user]);
+  }, [user, createUser]);
 
   return (
     <div className="game">
@@ -26,28 +26,28 @@ export const Game = () => {
           <div className="characts-column">
             <li className="charact">
               <span className="charact__title">Здоровье</span>
-              <ProgressBar now={user.health ? user.health : 0} />
+              <ProgressBar now={user ? user.health : 0} />
             </li>
             <li className="charact">
               <span className="charact__title">Усталость</span>
-              <ProgressBar now={user.tire ? user.tire : 0} />
+              <ProgressBar now={user ? user.tire : 0} />
             </li>
           </div>
           <div className="characts-column">
             <li className="charact">
               <span className="charact__title">Популярность</span>
-              <ProgressBar now={user.fame ? user.fame : 0} />
+              <ProgressBar now={user ? user.fame : 0} />
             </li>
             <li className="charact">
               <span className="charact__title">Красота</span>
-              <ProgressBar now={user.beauty ? user.beauty : 0} />
+              <ProgressBar now={user ? user.beauty : 0} />
             </li>
           </div>
         </ul>
         <div className="mini-profile">
           <img className="mini-profile__img" src={profileImage} alt="" />
           <span className="mini-profile__name">
-            {user.name ? user.name : 'Персонаж не создан'}
+            {user ? user.name + ' ' + user.surname : 'Персонаж не создан'}
           </span>
         </div>
       </div>
