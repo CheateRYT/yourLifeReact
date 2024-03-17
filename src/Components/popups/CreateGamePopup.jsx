@@ -2,19 +2,24 @@ import React, { useState, useContext } from 'react';
 import '../scss/CreateGamePopup.scss';
 import { UserContext } from '../../Contexts/UserContext';
 import { useNavigate } from 'react-router-dom';
-
+import { parentsData } from '../../Classes/Parents';
 export const CreateGamePopup = ({ showPopup }) => {
   const navigate = useNavigate();
   const [randomNumber, setRandomNumber] = useState(
     Math.floor(Math.random() * 101),
   );
+  const [randomElementIndexParent, setRandomElementIndexParent] = useState(0);
   const { createUser } = useContext(UserContext);
   const [formData, setFormData] = useState({
     name: '',
     surname: '',
+    location: 'none',
     gender: 'none',
   });
-
+  const getRandomElementParent = () => {
+    const randomIndex = Math.floor(Math.random() * parentsData.length);
+    setRandomElementIndexParent(randomIndex);
+  };
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -24,8 +29,12 @@ export const CreateGamePopup = ({ showPopup }) => {
   };
 
   const handleStartGame = () => {
-    if (formData.gender === 'medium') {
-      alert('Вам запрещено играть, выберите другой пол!!!');
+    getRandomElementParent();
+    if (
+      formData.gender === 'medium' &&
+      formData.location == 'Америка, Лос-Анджелес'
+    ) {
+      alert('Вы не патриот, вам нельзя играть!!!');
       showPopup(false);
     } else if (
       formData &&
@@ -34,6 +43,7 @@ export const CreateGamePopup = ({ showPopup }) => {
       formData &&
       formData &&
       formData.gender &&
+      formData.location !== 'none' &&
       formData.gender !== 'none'
     ) {
       createUser(
@@ -45,6 +55,13 @@ export const CreateGamePopup = ({ showPopup }) => {
         randomNumber,
         formData.gender,
         0,
+        'Отсутствует',
+        'Отсутствует',
+        'Отсутствует',
+        0,
+        'Отсутствует',
+        formData.location,
+        parentsData[randomElementIndexParent],
       );
 
       navigate('/game');
@@ -79,6 +96,27 @@ export const CreateGamePopup = ({ showPopup }) => {
             value={formData.surname}
             onChange={handleInputChange}
           />
+        </div>
+        <div className="form-group">
+          <label htmlFor="country">Локация:</label>
+          <select
+            id="location-selector"
+            name="location"
+            className="form-input"
+            value={formData.location}
+            onChange={handleInputChange}
+          >
+            <option value="none">Выбрать</option>
+            <option value="Россия, Москва">Россия, Москва</option>
+            <option value="Россия, Санкт-Петербург">
+              Россия, Санкт-Петербург
+            </option>
+            <option value="Россия, Ростов-на-Дону">
+              Россия, Ростов-на-Дону
+            </option>
+            <option value="Россия, Красноярск">Россия, Красноярск</option>
+            <option value="Америка, Лос-Анджелес">Америка, Лос-Анджелес</option>
+          </select>
         </div>
         <div className="form-group">
           <label htmlFor="gender">Гендер:</label>

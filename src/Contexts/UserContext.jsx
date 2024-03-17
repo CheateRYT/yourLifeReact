@@ -19,6 +19,13 @@ const UserProvider = ({ children }) => {
           userFromLocalStorage.beauty,
           userFromLocalStorage.gender,
           userFromLocalStorage.money,
+          userFromLocalStorage.occupation,
+          userFromLocalStorage.education,
+          userFromLocalStorage.diseases,
+          userFromLocalStorage.age,
+          userFromLocalStorage.prisonTime,
+          userFromLocalStorage.location,
+          userFromLocalStorage.parents,
         ),
       );
     }
@@ -33,6 +40,13 @@ const UserProvider = ({ children }) => {
     beauty,
     gender,
     money,
+    occupation,
+    education,
+    diseases,
+    age,
+    prisonTime,
+    location,
+    parents,
   ) => {
     const userFromLocalStorage = JSON.parse(localStorage.getItem('user'));
     if (!userFromLocalStorage) {
@@ -45,12 +59,53 @@ const UserProvider = ({ children }) => {
         beauty,
         gender,
         money,
+        occupation,
+        education,
+        diseases,
+        age,
+        prisonTime,
+        location,
+        parents,
       );
       setUser(newUser);
       newUser.updateLocalStorage();
     }
   };
+  const updateOccupation = (newOccupation) => {
+    user.updateOccupation(newOccupation);
+    setUser({ ...user });
+    user.updateLocalStorage();
+  };
 
+  const updateEducation = (newEducation) => {
+    user.updateEducation(newEducation);
+    setUser({ ...user });
+    user.updateLocalStorage();
+  };
+
+  const updateDiseases = (newDiseases) => {
+    user.updateDiseases(newDiseases);
+    setUser({ ...user });
+    user.updateLocalStorage();
+  };
+
+  const updateAge = (newAge) => {
+    user.updateAge(newAge);
+    setUser({ ...user });
+    user.updateLocalStorage();
+  };
+
+  const updatePrisonTime = (newPrisonTime) => {
+    user.updatePrisonTime(newPrisonTime);
+    setUser({ ...user });
+    user.updateLocalStorage();
+  };
+
+  const updateLocation = (newLocation) => {
+    user.updateLocation(newLocation);
+    setUser({ ...user });
+    user.updateLocalStorage();
+  };
   const updateMoney = (newMoney) => {
     user.updateMoney(newMoney);
     setUser({ ...user });
@@ -105,6 +160,12 @@ const UserProvider = ({ children }) => {
         updateUserTire,
         updateUserGender,
         updateUserHealth,
+        updateOccupation,
+        updateEducation,
+        updateDiseases,
+        updateAge,
+        updatePrisonTime,
+        updateLocation,
       }}
     >
       {children}

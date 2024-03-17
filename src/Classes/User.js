@@ -1,5 +1,21 @@
 export class User {
-  constructor(name, surname, tire, health, fame, beauty, gender, money) {
+  constructor(
+    name,
+    surname,
+    tire,
+    health,
+    fame,
+    beauty,
+    gender,
+    money,
+    occupation,
+    education,
+    diseases,
+    age,
+    prisonTime,
+    location,
+    parents,
+  ) {
     this.name = name;
     this.surname = surname;
     this.money = money;
@@ -7,9 +23,39 @@ export class User {
     this.health = health;
     this.fame = fame;
     this.beauty = beauty;
+    this.prisonTime = prisonTime;
     this.gender = gender;
+    this.occupation = occupation;
+    this.education = education;
+    this.diseases = diseases;
+    this.age = age;
+    this.location = location;
+    this.parents = parents;
   }
-
+  updatePrisonTime(newPrisonTime) {
+    this.prisonTime = newPrisonTime;
+    this.updateLocalStorage();
+  }
+  updateLocation(newLocation) {
+    this.location = newLocation;
+    this.updateLocalStorage();
+  }
+  updateAge(newAge) {
+    this.age = newAge;
+    this.updateLocalStorage();
+  }
+  updateOccupation(newOccupation) {
+    this.occupation = newOccupation;
+    this.updateLocalStorage();
+  }
+  updateDiseases(newDiseases) {
+    this.diseases = newDiseases;
+    this.updateLocalStorage();
+  }
+  updateEducation(newEducation) {
+    this.education = newEducation;
+    this.updateLocalStorage();
+  }
   updateName(newName) {
     this.name = newName;
     this.updateLocalStorage();
@@ -49,6 +95,13 @@ export class User {
       beauty: this.beauty,
       gender: this.gender,
       money: this.money,
+      occupation: this.occupation,
+      education: this.education,
+      diseases: this.diseases,
+      age: this.age,
+      prisonTime: this.prisonTime,
+      location: this.location,
+      parents: this.parents,
     };
     localStorage.setItem('user', JSON.stringify(updatedUser));
   }
