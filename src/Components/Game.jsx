@@ -1,15 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react';
-import './css/Game.scss';
+import './scss/Game.scss';
 import { UserContext } from '../Contexts/UserContext';
 import { ProgressBar } from 'react-bootstrap';
 import emptyProfile from '../img/emptyProfile.png';
 import femaleProfile from '../img/femaleProfile.png';
 import maleProfile from '../img/maleProfile.png';
-
+import { ProfilePopup } from './popups/ProfilePopup';
 export const Game = () => {
   const { user, createUser } = useContext(UserContext);
   const [profileImage, setProfileImage] = useState(emptyProfile);
-
+  const [statusProfilePopup, setStatusProfilePopup] = useState(false);
   useEffect(() => {
     if (user && user.gender) {
       setProfileImage(user.gender === 'female' ? femaleProfile : maleProfile);
@@ -17,7 +17,9 @@ export const Game = () => {
       setProfileImage(emptyProfile);
     }
   }, [user, createUser]);
-
+  const handleMiniProfile = () => {
+    setStatusProfilePopup(true);
+  };
   return (
     <div className="game">
       <div className="container game-navbar">
@@ -44,13 +46,19 @@ export const Game = () => {
             </li>
           </div>
         </ul>
-        <div className="mini-profile">
+        <div className="mini-profile" onClick={handleMiniProfile}>
           <img className="mini-profile__img" src={profileImage} alt="" />
           <span className="mini-profile__name">
             {user ? user.name + ' ' + user.surname : 'Персонаж не создан'}
           </span>
         </div>
       </div>
+      {statusProfilePopup && (
+        <ProfilePopup
+          profileImage={profileImage}
+          hideProfilePopup={setStatusProfilePopup}
+        />
+      )}
     </div>
   );
 };

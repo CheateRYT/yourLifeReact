@@ -3,7 +3,7 @@ import { useState, useContext } from 'react';
 import { Settings } from './Components/Settings';
 import { Game } from './Components/Game';
 import './MainMenu.scss';
-import { CreateGame } from './Components/CreateGame';
+import { CreateGamePopup } from './Components/popups/CreateGamePopup';
 import { UserContext } from './Contexts/UserContext';
 export const MainMenu = () => {
   const [showCreateGame, setShowCreateGame] = useState(false);
@@ -36,7 +36,7 @@ export const MainMenu = () => {
       <button onClick={showAuthorAlert} className="main-menu__button">
         Автор
       </button>
-      {showCreateGame && <CreateGame showPopup={setShowCreateGame} />}
+      {showCreateGame && <CreateGamePopup showPopup={setShowCreateGame} />}
     </div>
   );
 };

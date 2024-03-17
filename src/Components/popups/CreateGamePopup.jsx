@@ -1,9 +1,9 @@
 import React, { useState, useContext } from 'react';
-import './css/CreateGame.scss';
-import { UserContext } from '../Contexts/UserContext';
+import '../scss/CreateGamePopup.scss';
+import { UserContext } from '../../Contexts/UserContext';
 import { useNavigate } from 'react-router-dom';
 
-export const CreateGame = ({ showPopup }) => {
+export const CreateGamePopup = ({ showPopup }) => {
   const navigate = useNavigate();
   const [randomNumber, setRandomNumber] = useState(
     Math.floor(Math.random() * 101),
