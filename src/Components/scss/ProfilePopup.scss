@@ -37,7 +37,9 @@
     transition: transform 0.3s ease;
     font-size: 25px;
   }
+
   .about {
+    margin-bottom: 25px;
     padding-left: 10px;
     padding-right: 10px;
     border: 1px solid black;
@@ -45,6 +47,7 @@
     justify-content: space-between;
     text-align: center;
     align-items: center;
+
     &__prefix {
       @media (max-width: 1200px) {
         margin-left: 0%;
@@ -53,8 +56,18 @@
       font-size: 18px;
       font-weight: 600;
     }
+
     &__img {
       width: 14%;
+    }
+  }
+
+  .profile-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &__text {
+      font-size: 20px;
     }
   }
 }

@@ -1,6 +1,8 @@
 import React, { useState, useContext } from 'react';
 import '../scss/ProfilePopup.scss';
+import { FaUser } from 'react-icons/fa';
 import { UserContext } from '../../Contexts/UserContext';
+
 export const ProfilePopup = ({ profileImage, hideProfilePopup }) => {
   const { user } = useContext(UserContext);
   return (
@@ -18,6 +20,10 @@ export const ProfilePopup = ({ profileImage, hideProfilePopup }) => {
             {user.name} {user.surname}
           </span>
           <span className="about__prefix">Ты</span>
+        </div>
+        <div className="profile-title">
+          <FaUser style={{ fontSize: '1em', marginRight: '5px' }} />
+          <span className="profile-title__text">Профиль</span>
         </div>
       </div>
     </div>
