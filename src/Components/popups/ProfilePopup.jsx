@@ -5,10 +5,13 @@ export const ProfilePopup = ({ profileImage, hideProfilePopup }) => {
   const { user } = useContext(UserContext);
   return (
     <div className="profile-popup popup-narrow">
-      <span className="close-button" onClick={() => hideProfilePopup(false)}>
+      <span
+        className="close-button-narrow"
+        onClick={() => hideProfilePopup(false)}
+      >
         X
       </span>
-      <div className="popup-content">
+      <div className="popup-narrow-content">
         <div className="about d-flex ">
           <img className="about__img" src={profileImage} alt="" />
           <span className="about__userName">
