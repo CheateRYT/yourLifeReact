@@ -46,9 +46,14 @@ export const Game = () => {
             </li>
           </div>
         </ul>
-        <div className="mini-profile" onClick={handleMiniProfile}>
-          <img className="mini-profile__img" src={profileImage} alt="" />
-          <span className="mini-profile__name">
+        <div className="mini-profile">
+          <img
+            onClick={handleMiniProfile}
+            className="mini-profile__img"
+            src={profileImage}
+            alt=""
+          />
+          <span onClick={handleMiniProfile} className="mini-profile__name">
             {user ? user.name + ' ' + user.surname : 'Персонаж не создан'}
           </span>
         </div>
