@@ -15,6 +15,7 @@ export class User {
     prisonTime,
     location,
     parents,
+    marryPartner,
   ) {
     this.name = name;
     this.surname = surname;
@@ -31,6 +32,7 @@ export class User {
     this.age = age;
     this.location = location;
     this.parents = parents;
+    this.marryPartner = marryPartner;
   }
   updatePrisonTime(newPrisonTime) {
     this.prisonTime = newPrisonTime;
@@ -46,6 +48,10 @@ export class User {
   }
   updateOccupation(newOccupation) {
     this.occupation = newOccupation;
+    this.updateLocalStorage();
+  }
+  updateMarryPartner(newMarryPartner) {
+    this.marryPartner = newMarryPartner;
     this.updateLocalStorage();
   }
   updateDiseases(newDiseases) {
@@ -102,6 +108,7 @@ export class User {
       prisonTime: this.prisonTime,
       location: this.location,
       parents: this.parents,
+      marryPartner: this.marryPartner,
     };
     localStorage.setItem('user', JSON.stringify(updatedUser));
   }

@@ -6,10 +6,13 @@ import emptyProfile from '../img/emptyProfile.png';
 import femaleProfile from '../img/femaleProfile.png';
 import maleProfile from '../img/maleProfile.png';
 import { ProfilePopup } from './popups/ProfilePopup';
+import { useNavigate } from 'react-router-dom';
+
 export const Game = () => {
   const { user, createUser } = useContext(UserContext);
   const [profileImage, setProfileImage] = useState(emptyProfile);
   const [statusProfilePopup, setStatusProfilePopup] = useState(false);
+  const navigate = useNavigate();
   useEffect(() => {
     if (user && user.gender) {
       setProfileImage(user.gender === 'female' ? femaleProfile : maleProfile);
@@ -18,7 +21,12 @@ export const Game = () => {
     }
   }, [user, createUser]);
   const handleMiniProfile = () => {
-    setStatusProfilePopup(true);
+    if (user) {
+      setStatusProfilePopup(true);
+    } else {
+      alert('У вас нету персонажа! Создайте в главном меню');
+      navigate('/');
+    }
   };
   return (
     <div className="game">

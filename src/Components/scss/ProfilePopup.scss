@@ -63,11 +63,23 @@
   }
 
   .profile-title {
+    margin-bottom: 3%;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-weight: 600;
     &__text {
-      font-size: 20px;
+      font-size: 22px;
     }
   }
+}
+.profile-data {
+  margin-bottom: 20%;
+}
+.profile-data span {
+  display: block;
+}
+.profile-charact-list {
+  display: flex;
+  flex-direction: column;
 }

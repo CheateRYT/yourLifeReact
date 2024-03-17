@@ -26,6 +26,7 @@ const UserProvider = ({ children }) => {
           userFromLocalStorage.prisonTime,
           userFromLocalStorage.location,
           userFromLocalStorage.parents,
+          userFromLocalStorage.marryPartner,
         ),
       );
     }
@@ -47,6 +48,7 @@ const UserProvider = ({ children }) => {
     prisonTime,
     location,
     parents,
+    marryPartner,
   ) => {
     const userFromLocalStorage = JSON.parse(localStorage.getItem('user'));
     if (!userFromLocalStorage) {
@@ -66,6 +68,7 @@ const UserProvider = ({ children }) => {
         prisonTime,
         location,
         parents,
+        marryPartner,
       );
       setUser(newUser);
       newUser.updateLocalStorage();
@@ -76,7 +79,11 @@ const UserProvider = ({ children }) => {
     setUser({ ...user });
     user.updateLocalStorage();
   };
-
+  const updateUserMarryPartner = (newMarryPartner) => {
+    user.updateMarryPartner(newMarryPartner);
+    setUser({ ...user });
+    user.updateLocalStorage();
+  };
   const updateEducation = (newEducation) => {
     user.updateEducation(newEducation);
     setUser({ ...user });
@@ -166,6 +173,7 @@ const UserProvider = ({ children }) => {
         updateAge,
         updatePrisonTime,
         updateLocation,
+        updateUserMarryPartner,
       }}
     >
       {children}

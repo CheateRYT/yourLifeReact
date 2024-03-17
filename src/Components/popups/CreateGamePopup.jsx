@@ -31,7 +31,7 @@ export const CreateGamePopup = ({ showPopup }) => {
   const handleStartGame = () => {
     getRandomElementParent();
     if (
-      formData.gender === 'medium' &&
+      formData.gender == 'Средний' ||
       formData.location == 'Америка, Лос-Анджелес'
     ) {
       alert('Вы не патриот, вам нельзя играть!!!');
@@ -62,6 +62,7 @@ export const CreateGamePopup = ({ showPopup }) => {
         'Отсутствует',
         formData.location,
         parentsData[randomElementIndexParent],
+        'Отсутствует',
       );
 
       navigate('/game');
@@ -128,9 +129,9 @@ export const CreateGamePopup = ({ showPopup }) => {
             onChange={handleInputChange}
           >
             <option value="none">Выбрать</option>
-            <option value="male">Мужской</option>
-            <option value="female">Женский</option>
-            <option value="medium">Средний</option>
+            <option value="Мужской">Мужской</option>
+            <option value="Женский">Женский</option>
+            <option value="Средний">Средний</option>
           </select>
         </div>
         <button onClick={handleStartGame} className="create-button">
