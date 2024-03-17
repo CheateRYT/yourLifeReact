@@ -64,6 +64,9 @@ export const Game = () => {
           <span onClick={handleMiniProfile} className="mini-profile__name">
             {user ? user.name + ' ' + user.surname : 'Персонаж не создан'}
           </span>
+          <span onClick={handleMiniProfile} className="mini-profile__money">
+            {user ? user.money + ' ₽' : ''}
+          </span>
         </div>
       </div>
       {statusProfilePopup && (
