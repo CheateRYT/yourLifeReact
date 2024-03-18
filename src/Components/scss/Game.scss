@@ -6,6 +6,7 @@
   }
   font-size: 30px;
   font-weight: 700;
+  cursor: pointer;
   letter-spacing: 10px;
 }
 .characts-column {
@@ -21,9 +22,12 @@
   gap: 30px;
 }
 .game-navbar {
+  margin-bottom: 0%;
   align-items: center;
   display: flex;
   justify-content: space-around;
+  border: 1px solid black;
+  border-radius: 10px;
 }
 .mini-profile__img {
   width: 10%;
@@ -39,4 +43,31 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+}
+.game-all {
+  display: flex;
+  border-radius: 10px;
+}
+.game-menu {
+  padding-top: 1%;
+  width: 20%;
+  padding-left: 5%;
+  padding-bottom: 20%;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+.game-links {
+  font-size: 17px;
+  font-weight: 800px;
+}
+.game-overlay {
+  width: 80%;
+  border-radius: 10px;
+  border: 1px solid black;
+}
+.game-links__link {
+  cursor: pointer;
+  margin-bottom: 10px;
+  font-size: 17px;
+  font-weight: 500;
 }

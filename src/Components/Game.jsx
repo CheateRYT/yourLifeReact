@@ -6,7 +6,7 @@ import emptyProfile from '../img/emptyProfile.png';
 import femaleProfile from '../img/femaleProfile.png';
 import maleProfile from '../img/maleProfile.png';
 import { ProfilePopup } from './popups/ProfilePopup';
-import { useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 export const Game = () => {
   const { user, createUser } = useContext(UserContext);
@@ -28,9 +28,17 @@ export const Game = () => {
       navigate('/');
     }
   };
+  const handleNavbarTitle = () => {
+    navigate('/');
+  };
+  const handleMenuIdNavigate = (event) => {
+    const id = event.target.id;
+    const textAfterDoubleUnderscore = id.split('__')[1];
+    navigate(`/game/${textAfterDoubleUnderscore}`);
+  };
   return (
     <div className="game">
-      <div className="container game-navbar">
+      <div onClick={handleNavbarTitle} className="container game-navbar">
         <h1 className="game-navbar__title">YourLife</h1>
         <ul className="charact-list">
           <div className="characts-column">
@@ -67,6 +75,141 @@ export const Game = () => {
           <span onClick={handleMiniProfile} className="mini-profile__money">
             {user ? user.money + ' ₽' : ''}
           </span>
+        </div>
+      </div>
+      <div className="game-all">
+        <div className="game-menu">
+          <ul className="game-links">
+            <li
+              onClick={handleMenuIdNavigate}
+              className="game-links__link"
+              id="game-link__main"
+            >
+              Главная
+            </li>
+            <li
+              onClick={handleMenuIdNavigate}
+              className="game-links__link"
+              id="game-link__character"
+            >
+              Персонаж
+            </li>
+            <li
+              onClick={handleMenuIdNavigate}
+              className="game-links__link"
+              id="game-link__occupation"
+            >
+              Занятия
+            </li>
+            <li
+              onClick={handleMenuIdNavigate}
+              className="game-links__link"
+              id="game-link__shopping"
+            >
+              Покупки
+            </li>
+            <li
+              onClick={handleMenuIdNavigate}
+              className="game-links__link"
+              id="game-link__casino"
+            >
+              Азартные игры
+            </li>
+            <li
+              onClick={handleMenuIdNavigate}
+              className="game-links__link"
+              id="game-link__pets"
+            >
+              Питомцы
+            </li>
+            <li
+              onClick={handleMenuIdNavigate}
+              className="game-links__link"
+              id="game-link__assets"
+            >
+              Имущество
+            </li>
+            <li
+              onClick={handleMenuIdNavigate}
+              className="game-links__link"
+              id="game-link__doctor"
+            >
+              Доктор
+            </li>
+            <li
+              onClick={handleMenuIdNavigate}
+              className="game-links__link"
+              id="game-link__emmigrate"
+            >
+              Переезд
+            </li>
+            <li
+              onClick={handleMenuIdNavigate}
+              className="game-links__link"
+              id="game-link__licenses"
+            >
+              Лицензии
+            </li>
+            <li
+              onClick={handleMenuIdNavigate}
+              className="game-links__link"
+              id="game-link__mindBody"
+            >
+              Тело и Дух
+            </li>
+            <li
+              onClick={handleMenuIdNavigate}
+              className="game-links__link"
+              id="game-link__nightClub"
+            >
+              Ночной клуб
+            </li>
+            <li
+              onClick={handleMenuIdNavigate}
+              className="game-links__link"
+              id="game-link__socialMedia"
+            >
+              Социальные сети
+            </li>
+            <li
+              onClick={handleMenuIdNavigate}
+              className="game-links__link"
+              id="game-link__vacation"
+            >
+              Отдых
+            </li>
+            <li
+              onClick={handleMenuIdNavigate}
+              className="game-links__link"
+              id="game-link__crime"
+            >
+              Криминал
+            </li>
+            <li
+              onClick={handleMenuIdNavigate}
+              className="game-links__link"
+              id="game-link__children"
+            >
+              Дети
+            </li>
+            <li
+              onClick={handleMenuIdNavigate}
+              className="game-links__link"
+              id="game-link__love"
+            >
+              Любовь
+            </li>
+            <li
+              onClick={handleMenuIdNavigate}
+              className="game-links__link"
+              id="game-link__lottery"
+            >
+              Лотерея
+            </li>
+          </ul>
+        </div>
+        <div className="game-overlay">
+          <Outlet />
         </div>
       </div>
       {statusProfilePopup && (

@@ -49,7 +49,7 @@ export const CreateGamePopup = ({ showPopup }) => {
       createUser(
         formData.name,
         formData.surname,
-        100,
+        0,
         100,
         0,
         randomNumber,
