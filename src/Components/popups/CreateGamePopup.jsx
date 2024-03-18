@@ -65,7 +65,7 @@ export const CreateGamePopup = ({ showPopup }) => {
         'Отсутствует',
       );
 
-      navigate('/game');
+      navigate('/game/main');
       showPopup(false);
     }
   };

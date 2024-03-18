@@ -38,8 +38,10 @@ export const Game = () => {
   };
   return (
     <div className="game">
-      <div onClick={handleNavbarTitle} className="container game-navbar">
-        <h1 className="game-navbar__title">YourLife</h1>
+      <div className="container game-navbar">
+        <h1 onClick={handleNavbarTitle} className="game-navbar__title">
+          YourLife
+        </h1>
         <ul className="charact-list">
           <div className="characts-column">
             <li className="charact">
@@ -208,7 +210,7 @@ export const Game = () => {
             </li>
           </ul>
         </div>
-        <div className="game-overlay">
+        <div className="game-overlay game-container">
           <Outlet />
         </div>
       </div>

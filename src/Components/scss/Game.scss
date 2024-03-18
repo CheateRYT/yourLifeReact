@@ -30,7 +30,7 @@
   border-radius: 10px;
 }
 .mini-profile__img {
-  width: 10%;
+  width: 50px;
   cursor: pointer;
 }
 .mini-profile__name {
@@ -57,7 +57,6 @@
   border-radius: 10px;
 }
 .game-links {
-  font-size: 17px;
   font-weight: 800px;
 }
 .game-overlay {
@@ -69,5 +68,14 @@
   cursor: pointer;
   margin-bottom: 10px;
   font-size: 17px;
+  @media (max-width: 949px) {
+    font-size: 12px;
+  }
   font-weight: 500;
+}
+.game-container {
+  padding-left: 2%;
+  padding-right: 2%;
+  padding-top: 2%;
+  padding-bottom: 2%;
 }

@@ -18,7 +18,7 @@ export const MainMenu = () => {
     if (!user) {
       setShowCreateGame(true);
     } else {
-      navigate('/game');
+      navigate('/game/main');
     }
   };
   const handleSettingsButton = () => {

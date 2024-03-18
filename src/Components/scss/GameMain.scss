@@ -1,0 +1,49 @@
+.age-button {
+  width: 150px;
+  cursor: pointer;
+  height: 150px;
+  border: 2px solid black;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__plus {
+    font-size: 35px;
+  }
+
+  &__text {
+    font-size: 25px;
+  }
+}
+.history {
+  width: 80%;
+  height: 60vh; /* 60% высоты окна просмотра */
+  border: 1px solid black;
+  min-width: 100px;
+  display: flex;
+  flex-direction: column;
+  overflow: auto; /* Добавляем прокрутку в случае переполнения */
+}
+
+.history__title {
+  text-align: center;
+  padding: 10px;
+}
+
+.history__text {
+  padding-right: 20px;
+  padding-left: 20px;
+  padding-bottom: 5px;
+  word-break: break-all;
+}
+
+.game-main {
+  gap: 3%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh; /* 100% высоты окна просмотра */
+}

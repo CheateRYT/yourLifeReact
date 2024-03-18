@@ -42,8 +42,8 @@ export class User {
     this.location = newLocation;
     this.updateLocalStorage();
   }
-  updateAge(newAge) {
-    this.age = newAge;
+  updateAge() {
+    this.age++;
     this.updateLocalStorage();
   }
   updateOccupation(newOccupation) {

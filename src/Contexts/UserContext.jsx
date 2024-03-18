@@ -96,10 +96,9 @@ const UserProvider = ({ children }) => {
     user.updateLocalStorage();
   };
 
-  const updateAge = (newAge) => {
-    user.updateAge(newAge);
+  const updateAge = () => {
+    user.updateAge();
     setUser({ ...user });
-    user.updateLocalStorage();
   };
 
   const updatePrisonTime = (newPrisonTime) => {
