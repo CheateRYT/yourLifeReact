@@ -34,6 +34,7 @@ export const ProfilePopup = ({ profileImage, hideProfilePopup }) => {
           <span className="profile-education">
             Образование: {user.education}
           </span>
+          <span className="profile-parents">Родители: {user.parents}</span>
           <span className="profile-occupation">Занятие: {user.occupation}</span>
           <span className="profile-diseases">Болезни: {user.diseases}</span>
           <span className="profile-location">Локация: {user.location}</span>
