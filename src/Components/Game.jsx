@@ -9,7 +9,8 @@ import { ProfilePopup } from './popups/ProfilePopup';
 import { Outlet, useNavigate } from 'react-router-dom';
 import clickButtonAudio from '../Utils/clickButtonAudio.mp3';
 export const Game = () => {
-  const { user, createUser, healthNow } = useContext(UserContext);
+  const { user, createUser, healthNow, tireNow, beautyNow, fameNow } =
+    useContext(UserContext);
   const [profileImage, setProfileImage] = useState(emptyProfile);
   const [statusProfilePopup, setStatusProfilePopup] = useState(false);
 
@@ -53,17 +54,17 @@ export const Game = () => {
             </li>
             <li className="charact">
               <span className="charact__title">Усталость</span>
-              <ProgressBar now={user ? user.tire : 0} />
+              <ProgressBar now={tireNow} />
             </li>
           </div>
           <div className="characts-column">
             <li className="charact">
               <span className="charact__title">Популярность</span>
-              <ProgressBar now={user ? user.fame : 0} />
+              <ProgressBar now={fameNow} />
             </li>
             <li className="charact">
               <span className="charact__title">Красота</span>
-              <ProgressBar now={user ? user.beauty : 0} />
+              <ProgressBar now={beautyNow} />
             </li>
           </div>
         </ul>

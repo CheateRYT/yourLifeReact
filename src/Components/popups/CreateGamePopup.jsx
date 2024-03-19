@@ -10,7 +10,8 @@ export const CreateGamePopup = ({ showPopup }) => {
     Math.floor(Math.random() * 101),
   );
   const [randomElementIndexParent, setRandomElementIndexParent] = useState(0);
-  const { createUser, setHealthNow } = useContext(UserContext);
+  const { createUser, setHealthNow, setBeautyNow, setTireNow, setFameNow } =
+    useContext(UserContext);
   const [formData, setFormData] = useState({
     name: '',
     surname: '',
@@ -68,6 +69,9 @@ export const CreateGamePopup = ({ showPopup }) => {
         'Отсутствует',
       );
       setHealthNow(100);
+      setTireNow(0);
+      setFameNow(0);
+      setBeautyNow(randomNumber);
       navigate('/game/main');
       showPopup(false);
     }
