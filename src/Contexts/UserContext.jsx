@@ -5,7 +5,7 @@ const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-
+  const [healthNow, setHealthNow] = useState(0);
   useEffect(() => {
     const userFromLocalStorage = JSON.parse(localStorage.getItem('user'));
     if (userFromLocalStorage) {
@@ -161,6 +161,8 @@ const UserProvider = ({ children }) => {
     <UserContext.Provider
       value={{
         user,
+        healthNow,
+        setHealthNow,
         createUser,
         updateMoney,
         updateUserName,

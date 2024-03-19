@@ -1,12 +1,14 @@
-import React, { useState, useContext, useRef, useEffect } from 'react';
+import React, { useContext, useRef, useEffect } from 'react';
 import '../scss/GameMain.scss';
 import { UserContext } from '../../Contexts/UserContext';
 import clickButtonSound from '../../Utils/clickButtonAudio.mp3';
 import { HistoryTexts } from '../../Classes/HistoryTexts.js';
 import { Diseases } from '../../Classes/Diseases.js';
+
 export const GameMain = () => {
-  const { user, updateUser } = useContext(UserContext);
+  const { user, updateUser, setHealthNow } = useContext(UserContext);
   const historyRef = useRef(null);
+
   useEffect(() => {
     if (historyRef.current) {
       historyRef.current.scrollTop = historyRef.current.scrollHeight;
@@ -16,43 +18,47 @@ export const GameMain = () => {
       historyRef.current.innerHTML = savedHistoryText;
     }
   }, []);
+
   const handleUpdateAge = () => {
     const audio = new Audio(clickButtonSound);
     audio.play();
     user.age++;
     if (user.age >= 14 && Math.random() < 0.1) {
-      // Появление болезни только после 14 лет с 10% вероятностью
       const randomDisease =
         Diseases[Math.floor(Math.random() * Diseases.length)];
       if (user.diseases !== 'Отсутствует') {
-        user.diseases += `, ${randomDisease}`; // Добавление новой болезни через запятую
+        user.diseases += `, ${randomDisease}`;
       } else {
         user.diseases = randomDisease;
       }
-      // Уменьшение здоровья пользователя
     }
-    console.log(user.diseases);
+
     if (user.diseases !== 'Отсутствует') {
       const diseasesArray = user.diseases.split(',');
       for (let i = 0; i < diseasesArray.length; i++) {
-        let healthDecreasePercentage = Math.floor(Math.random() * 21) + 10; // От 10% до 30%
+        let healthDecreasePercentage = Math.floor(Math.random() * 21) + 10;
         if (diseasesArray.length > 1) {
-          healthDecreasePercentage += 10 * (diseasesArray.length - 1); // Дополнительное уменьшение здоровья за каждую дополнительную болезнь
+          healthDecreasePercentage += 10 * (diseasesArray.length - 1);
         }
         user.health -= Math.floor(
           user.health * (healthDecreasePercentage / 100),
         );
       }
     }
+
     user.updateLocalStorage();
+
     const randomText =
-      HistoryTexts[Math.floor(Math.random() * HistoryTexts.length)]; // Выбор случайного текста
+      HistoryTexts[Math.floor(Math.random() * HistoryTexts.length)];
     const p = document.createElement('p');
     p.textContent = randomText;
-    historyRef.current.appendChild(p); // Добавление абзаца в блок "history"
+    historyRef.current.appendChild(p);
     localStorage.setItem('historyText', historyRef.current.innerHTML);
-    updateUser(user); // Сохранение текста истории в localStorage
+
+    updateUser(user);
+    setHealthNow(user.health);
   };
+
   return (
     <div className="game-main">
       <div ref={historyRef} className="history">
