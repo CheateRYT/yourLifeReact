@@ -9,14 +9,28 @@ import { ProfilePopup } from './popups/ProfilePopup';
 import { Outlet, useNavigate } from 'react-router-dom';
 import clickButtonAudio from '../Utils/clickButtonAudio.mp3';
 export const Game = () => {
-  const { user, createUser, healthNow, tireNow, beautyNow, fameNow } =
-    useContext(UserContext);
+  const {
+    user,
+    createUser,
+    healthNow,
+    tireNow,
+    beautyNow,
+    fameNow,
+    setHealthNow,
+    setFameNow,
+    setTireNow,
+    setBeautyNow,
+  } = useContext(UserContext);
   const [profileImage, setProfileImage] = useState(emptyProfile);
   const [statusProfilePopup, setStatusProfilePopup] = useState(false);
 
   const navigate = useNavigate();
   useEffect(() => {
     if (user && user.gender) {
+      setHealthNow(user.health);
+      setFameNow(user.fame);
+      setTireNow(user.tire);
+      setBeautyNow(user.beauty);
       setProfileImage(user.gender === 'female' ? femaleProfile : maleProfile);
     } else {
       setProfileImage(emptyProfile);

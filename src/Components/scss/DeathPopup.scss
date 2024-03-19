@@ -1,4 +1,4 @@
-.popup-narrow {
+.death-popup {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -38,48 +38,54 @@
     font-size: 25px;
   }
 
-  .about {
-    margin-bottom: 25px;
-    padding-left: 10px;
-    padding-right: 10px;
-    border: 1px solid black;
-    border-radius: 10px;
-    justify-content: space-between;
-    text-align: center;
-    align-items: center;
-
-    &__prefix {
-      @media (max-width: 1200px) {
-        margin-left: 0%;
-      }
-      margin-left: 55%;
-      font-size: 18px;
-      font-weight: 600;
-    }
-
-    &__img {
-      width: 14%;
-    }
-  }
-
-  .profile-title {
+  .death-title {
     margin-bottom: 3%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 600;
+
     &__text {
       font-size: 22px;
     }
   }
-}
-.profile-data {
-  margin-bottom: 10%;
-}
-.profile-data span {
-  display: block;
-}
-.profile-charact-list {
-  display: flex;
-  flex-direction: column;
+
+  .death-data {
+    margin-bottom: 20%;
+
+    .death-username {
+      display: block;
+    }
+
+    .death-age {
+      display: block;
+    }
+    .death-diseases {
+    }
+    .death-image {
+      margin-top: 20px;
+
+      img {
+        width: 100px; /* Размер портрета персонажа */
+        height: 100px;
+        border-radius: 50%;
+        margin-bottom: 30px;
+      }
+    }
+
+    .death-buttons {
+      margin-top: 50px;
+
+      .death-button {
+        margin-right: 10px;
+        padding: 5px 10px;
+        background-color: white;
+
+        color: black;
+        border: 1px solid black;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+    }
+  }
 }

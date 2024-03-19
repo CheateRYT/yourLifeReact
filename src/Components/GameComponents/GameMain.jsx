@@ -1,13 +1,15 @@
-import React, { useContext, useRef, useEffect } from 'react';
+import React, { useContext, useRef, useEffect, useState } from 'react';
 import '../scss/GameMain.scss';
 import { UserContext } from '../../Contexts/UserContext';
 import clickButtonSound from '../../Utils/clickButtonAudio.mp3';
 import { HistoryTexts } from '../../Classes/HistoryTexts.js';
 import { Diseases } from '../../Classes/Diseases.js';
+import { DeathPopup } from '../DeathPopup.jsx';
 
 export const GameMain = () => {
   const { user, updateUser, setHealthNow } = useContext(UserContext);
   const historyRef = useRef(null);
+  const [showDeathPopup, setShowDeathPopup] = useState(false);
 
   useEffect(() => {
     if (historyRef.current) {
@@ -23,6 +25,7 @@ export const GameMain = () => {
     const audio = new Audio(clickButtonSound);
     audio.play();
     user.age++;
+
     if (user.age >= 14 && Math.random() < 0.1) {
       const randomDisease =
         Diseases[Math.floor(Math.random() * Diseases.length)];
@@ -35,28 +38,30 @@ export const GameMain = () => {
 
     if (user.diseases !== 'Отсутствует') {
       const diseasesArray = user.diseases.split(',');
+      let healthDecrease = Math.floor(Math.random() * 11) + 10; // Случайное число от 10 до 20
+
       for (let i = 0; i < diseasesArray.length; i++) {
-        let healthDecreasePercentage = Math.floor(Math.random() * 21) + 10;
-        if (diseasesArray.length > 1) {
-          healthDecreasePercentage += 10 * (diseasesArray.length - 1);
-        }
-        user.health -= Math.floor(
-          user.health * (healthDecreasePercentage / 100),
-        );
+        healthDecrease += 5; // Дополнительное уменьшение за каждую болезнь
       }
+
+      user.health -= healthDecrease;
     }
 
-    user.updateLocalStorage();
-
-    const randomText =
-      HistoryTexts[Math.floor(Math.random() * HistoryTexts.length)];
-    const p = document.createElement('p');
-    p.textContent = randomText;
-    historyRef.current.appendChild(p);
-    localStorage.setItem('historyText', historyRef.current.innerHTML);
-
-    updateUser(user);
-    setHealthNow(user.health);
+    if (user.health <= 0) {
+      setShowDeathPopup(true);
+      localStorage.removeItem('historyText');
+      localStorage.removeItem('user');
+    } else {
+      user.updateLocalStorage();
+      const randomText =
+        HistoryTexts[Math.floor(Math.random() * HistoryTexts.length)];
+      const p = document.createElement('p');
+      p.textContent = randomText;
+      historyRef.current.appendChild(p);
+      localStorage.setItem('historyText', historyRef.current.innerHTML);
+      updateUser(user);
+      setHealthNow(user.health);
+    }
   };
 
   return (
@@ -68,6 +73,7 @@ export const GameMain = () => {
         <span className="age-button__plus">+</span>
         <span className="age-button__text">Год</span>
       </div>
+      {showDeathPopup && <DeathPopup hideDeathPopup={setShowDeathPopup} />}
     </div>
   );
 };
