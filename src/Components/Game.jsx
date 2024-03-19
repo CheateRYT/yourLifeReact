@@ -12,6 +12,7 @@ export const Game = () => {
   const { user, createUser } = useContext(UserContext);
   const [profileImage, setProfileImage] = useState(emptyProfile);
   const [statusProfilePopup, setStatusProfilePopup] = useState(false);
+
   const navigate = useNavigate();
   useEffect(() => {
     if (user && user.gender) {

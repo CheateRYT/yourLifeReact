@@ -25,25 +25,32 @@ export const GameMain = () => {
     audio.play();
     user.age++;
 
-    if (Math.random() < 0.1) {
+    if (user.age >= 14 && Math.random() < 0.1) {
+      // Появление болезни только после 14 лет с 10% вероятностью
       const randomDisease =
         Diseases[Math.floor(Math.random() * Diseases.length)];
-      if (user.diseases) {
+      if (user.diseases !== 'Отсутствует') {
         user.diseases += `, ${randomDisease}`; // Добавление новой болезни через запятую
       } else {
         user.diseases = randomDisease;
       }
-    }
 
+      // Уменьшение здоровья пользователя
+    }
+    let healthDecreasePercentage = Math.floor(Math.random() * 21) + 10; // От 10% до 30%
+    if (user.diseases.split(',').length > 1) {
+      healthDecreasePercentage += 10 * (user.diseases.split(',').length - 1); // Дополнительное уменьшение здоровья за каждую дополнительную болезнь
+    }
+    user.health -= Math.floor(user.health * (healthDecreasePercentage / 100));
     user.updateLocalStorage();
 
     const randomText =
-      HistoryTexts[Math.floor(Math.random() * HistoryTexts.length)]; // выбор случайного текста
+      HistoryTexts[Math.floor(Math.random() * HistoryTexts.length)]; // Выбор случайного текста
     const p = document.createElement('p');
     p.textContent = randomText;
-    historyRef.current.appendChild(p); // добавление абзаца в блок "history"
+    historyRef.current.appendChild(p); // Добавление абзаца в блок "history"
 
-    localStorage.setItem('historyText', historyRef.current.innerHTML); // сохранение текста истории в localStorage
+    localStorage.setItem('historyText', historyRef.current.innerHTML); // Сохранение текста истории в localStorage
   };
 
   return (
