@@ -1,12 +1,14 @@
 import React, { useState, useContext, useRef, useEffect } from 'react';
 import '../scss/GameMain.scss';
 import { UserContext } from '../../Contexts/UserContext';
-
+import clickButtonSound from '../../Utils/clickButtonAudio.mp3';
 export const GameMain = () => {
   const { user, updateAge, setUser } = useContext(UserContext);
   const historyRef = useRef(null);
 
   const handleUpdateAge = () => {
+    const audio = new Audio(clickButtonSound);
+    audio.play();
     user.age++;
     user.updateLocalStorage();
   };

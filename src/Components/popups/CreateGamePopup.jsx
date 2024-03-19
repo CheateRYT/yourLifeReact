@@ -3,6 +3,7 @@ import '../scss/CreateGamePopup.scss';
 import { UserContext } from '../../Contexts/UserContext';
 import { useNavigate } from 'react-router-dom';
 import { parentsData } from '../../Classes/Parents';
+import clickButtonAudio from '../../Utils/clickButtonAudio.mp3';
 export const CreateGamePopup = ({ showPopup }) => {
   const navigate = useNavigate();
   const [randomNumber, setRandomNumber] = useState(
@@ -29,6 +30,8 @@ export const CreateGamePopup = ({ showPopup }) => {
   };
 
   const handleStartGame = () => {
+    const audio = new Audio(clickButtonAudio);
+    audio.play();
     getRandomElementParent();
     if (
       formData.gender == 'Средний' ||

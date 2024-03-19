@@ -7,7 +7,7 @@ import femaleProfile from '../img/femaleProfile.png';
 import maleProfile from '../img/maleProfile.png';
 import { ProfilePopup } from './popups/ProfilePopup';
 import { Outlet, useNavigate } from 'react-router-dom';
-
+import clickButtonAudio from '../Utils/clickButtonAudio.mp3';
 export const Game = () => {
   const { user, createUser } = useContext(UserContext);
   const [profileImage, setProfileImage] = useState(emptyProfile);
@@ -32,6 +32,8 @@ export const Game = () => {
     navigate('/');
   };
   const handleMenuIdNavigate = (event) => {
+    const audio = new Audio(clickButtonAudio);
+    audio.play();
     const id = event.target.id;
     const textAfterDoubleUnderscore = id.split('__')[1];
     navigate(`/game/${textAfterDoubleUnderscore}`);
