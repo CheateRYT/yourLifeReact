@@ -1,4 +1,4 @@
-export const historyTexts = [
+export const HistoryTexts = [
   'Текст 1',
   'Текст 2',
   'Текст 3',
