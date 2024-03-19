@@ -74,6 +74,10 @@ const UserProvider = ({ children }) => {
       newUser.updateLocalStorage();
     }
   };
+  const updateUser = (user) => {
+    setUser(user);
+    user.updateLocalStorage();
+  };
   const updateOccupation = (newOccupation) => {
     user.updateOccupation(newOccupation);
     setUser({ ...user });
@@ -173,6 +177,7 @@ const UserProvider = ({ children }) => {
         updatePrisonTime,
         updateLocation,
         updateUserMarryPartner,
+        updateUser,
       }}
     >
       {children}

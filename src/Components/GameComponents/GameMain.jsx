@@ -4,27 +4,22 @@ import { UserContext } from '../../Contexts/UserContext';
 import clickButtonSound from '../../Utils/clickButtonAudio.mp3';
 import { HistoryTexts } from '../../Classes/HistoryTexts.js';
 import { Diseases } from '../../Classes/Diseases.js';
-
 export const GameMain = () => {
-  const { user } = useContext(UserContext);
+  const { user, updateUser } = useContext(UserContext);
   const historyRef = useRef(null);
-
   useEffect(() => {
     if (historyRef.current) {
       historyRef.current.scrollTop = historyRef.current.scrollHeight;
     }
-
     const savedHistoryText = localStorage.getItem('historyText');
     if (savedHistoryText) {
       historyRef.current.innerHTML = savedHistoryText;
     }
   }, []);
-
   const handleUpdateAge = () => {
     const audio = new Audio(clickButtonSound);
     audio.play();
     user.age++;
-
     if (user.age >= 14 && Math.random() < 0.1) {
       // Появление болезни только после 14 лет с 10% вероятностью
       const randomDisease =
@@ -34,25 +29,30 @@ export const GameMain = () => {
       } else {
         user.diseases = randomDisease;
       }
-
       // Уменьшение здоровья пользователя
     }
-    let healthDecreasePercentage = Math.floor(Math.random() * 21) + 10; // От 10% до 30%
-    if (user.diseases.split(',').length > 1) {
-      healthDecreasePercentage += 10 * (user.diseases.split(',').length - 1); // Дополнительное уменьшение здоровья за каждую дополнительную болезнь
+    console.log(user.diseases);
+    if (user.diseases !== 'Отсутствует') {
+      const diseasesArray = user.diseases.split(',');
+      for (let i = 0; i < diseasesArray.length; i++) {
+        let healthDecreasePercentage = Math.floor(Math.random() * 21) + 10; // От 10% до 30%
+        if (diseasesArray.length > 1) {
+          healthDecreasePercentage += 10 * (diseasesArray.length - 1); // Дополнительное уменьшение здоровья за каждую дополнительную болезнь
+        }
+        user.health -= Math.floor(
+          user.health * (healthDecreasePercentage / 100),
+        );
+      }
     }
-    user.health -= Math.floor(user.health * (healthDecreasePercentage / 100));
     user.updateLocalStorage();
-
     const randomText =
       HistoryTexts[Math.floor(Math.random() * HistoryTexts.length)]; // Выбор случайного текста
     const p = document.createElement('p');
     p.textContent = randomText;
     historyRef.current.appendChild(p); // Добавление абзаца в блок "history"
-
-    localStorage.setItem('historyText', historyRef.current.innerHTML); // Сохранение текста истории в localStorage
+    localStorage.setItem('historyText', historyRef.current.innerHTML);
+    updateUser(user); // Сохранение текста истории в localStorage
   };
-
   return (
     <div className="game-main">
       <div ref={historyRef} className="history">
