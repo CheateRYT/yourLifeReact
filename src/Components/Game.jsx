@@ -31,7 +31,7 @@ export const Game = () => {
       setFameNow(user.fame);
       setTireNow(user.tire);
       setBeautyNow(user.beauty);
-      setProfileImage(user.gender === 'female' ? femaleProfile : maleProfile);
+      setProfileImage(user.gender === 'Женский' ? femaleProfile : maleProfile);
     } else {
       setProfileImage(emptyProfile);
     }
