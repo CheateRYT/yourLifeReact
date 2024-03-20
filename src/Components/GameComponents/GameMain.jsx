@@ -30,7 +30,7 @@ export const GameMain = () => {
     audio.play();
 
     let selectedStories = [];
-    if (user.age < 5) {
+    if (user.age <= 5) {
       selectedStories = ChildStories;
     }
     if (user.gender == 'Женский' && user.age > 5) {
