@@ -15,7 +15,7 @@ export const DeathPopup = ({ hideDeathPopup }) => {
   const navigate = useNavigate();
   useEffect(() => {
     if (user && user.gender) {
-      setProfileImage(user.gender === 'female' ? femaleProfile : maleProfile);
+      setProfileImage(user.gender === 'Женский' ? femaleProfile : maleProfile);
     } else {
       setProfileImage(emptyProfile);
     }
