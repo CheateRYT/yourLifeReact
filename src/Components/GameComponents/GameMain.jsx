@@ -24,7 +24,20 @@ export const GameMain = () => {
       historyRef.current.innerHTML = savedHistoryText;
     }
   }, []);
-
+  const getAgeText = (age) => {
+    if (age === 1) {
+      return 'год';
+    } else if (age % 10 === 1 && age !== 11) {
+      return 'год';
+    } else if (
+      (age % 10 === 2 || age % 10 === 3 || age % 10 === 4) &&
+      (age < 10 || age > 20)
+    ) {
+      return 'года';
+    } else {
+      return 'лет';
+    }
+  };
   const handleUpdateAge = () => {
     const audio = new Audio(clickButtonSound);
     audio.play();
@@ -67,7 +80,11 @@ export const GameMain = () => {
       const randomText =
         selectedStories[Math.floor(Math.random() * selectedStories.length)];
       const p = document.createElement('p');
-      p.textContent = randomText;
+
+      const ageText = getAgeText(user.age);
+      const ageString = user.age === 1 ? '1 год' : `${user.age} ${ageText}`;
+
+      p.textContent = `Возраст: ${ageString} - ${randomText}`;
       historyRef.current.appendChild(p);
       localStorage.setItem('historyText', historyRef.current.innerHTML);
       updateUser(user);
