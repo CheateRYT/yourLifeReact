@@ -2,7 +2,11 @@ import React, { useContext, useRef, useEffect, useState } from 'react';
 import '../scss/GameMain.scss';
 import { UserContext } from '../../Contexts/UserContext';
 import clickButtonSound from '../../Utils/clickButtonAudio.mp3';
-import { HistoryTexts } from '../../Classes/HistoryTexts.js';
+import {
+  FemaleStories,
+  MaleStories,
+  ChildStories,
+} from '../../Classes/HistoryTexts.js';
 import { Diseases } from '../../Classes/Diseases.js';
 import { DeathPopup } from '../DeathPopup.jsx';
 
@@ -24,8 +28,17 @@ export const GameMain = () => {
   const handleUpdateAge = () => {
     const audio = new Audio(clickButtonSound);
     audio.play();
-    user.age++;
 
+    let selectedStories = [];
+    if (user.gender === 'female') {
+      selectedStories = FemaleStories;
+    } else if (user.gender === 'male') {
+      selectedStories = MaleStories;
+    } else if (user.age <= 5) {
+      selectedStories = ChildStories;
+    }
+
+    user.age++;
     if (user.age >= 14 && Math.random() < 0.1) {
       const randomDisease =
         Diseases[Math.floor(Math.random() * Diseases.length)];
@@ -35,15 +48,12 @@ export const GameMain = () => {
         user.diseases = randomDisease;
       }
     }
-
     if (user.diseases !== 'Отсутствует') {
       const diseasesArray = user.diseases.split(',');
       let healthDecrease = Math.floor(Math.random() * 11) + 10; // Случайное число от 10 до 20
-
       for (let i = 0; i < diseasesArray.length; i++) {
         healthDecrease += 5; // Дополнительное уменьшение за каждую болезнь
       }
-
       user.health -= healthDecrease;
     }
 
@@ -54,7 +64,7 @@ export const GameMain = () => {
     } else {
       user.updateLocalStorage();
       const randomText =
-        HistoryTexts[Math.floor(Math.random() * HistoryTexts.length)];
+        selectedStories[Math.floor(Math.random() * selectedStories.length)];
       const p = document.createElement('p');
       p.textContent = randomText;
       historyRef.current.appendChild(p);
