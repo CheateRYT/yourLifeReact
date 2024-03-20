@@ -30,14 +30,15 @@ export const GameMain = () => {
     audio.play();
 
     let selectedStories = [];
-    if (user.gender === 'female') {
-      selectedStories = FemaleStories;
-    } else if (user.gender === 'male') {
-      selectedStories = MaleStories;
-    } else if (user.age <= 5) {
+    if (user.age < 5) {
       selectedStories = ChildStories;
     }
-
+    if (user.gender == 'Женский' && user.age > 5) {
+      selectedStories = FemaleStories;
+    }
+    if (user.gender == 'Мужской' && user.age > 5) {
+      selectedStories = MaleStories;
+    }
     user.age++;
     if (user.age >= 14 && Math.random() < 0.1) {
       const randomDisease =
