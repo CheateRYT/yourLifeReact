@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import '../scss/CreateGamePopup.scss';
 import { UserContext } from '../../Contexts/UserContext';
 import { useNavigate } from 'react-router-dom';
@@ -18,6 +18,10 @@ export const CreateGamePopup = ({ showPopup }) => {
     location: 'none',
     gender: 'none',
   });
+  useEffect(() => {
+    getRandomElementParent();
+  }, []);
+
   const getRandomElementParent = () => {
     const randomIndex = Math.floor(Math.random() * parentsData.length);
     setRandomElementIndexParent(randomIndex);
